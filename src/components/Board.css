@@ -1,7 +1,0 @@
-.board {
-	border: 1px solid black;
-	background: lightblue;
-	display: grid;
-	grid-template-columns: repeat(7, 1fr);
-}
-

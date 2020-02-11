@@ -1,27 +1,43 @@
 import React from 'react';
+import Column from './components/Column';
 import './App.css';
-import Board from './components/Board';
 
 class App extends React.Component {
 	constructor() {
 		super()
 
 		this.state = {
-			currentPlayer: 'red',
+			//initializing first player
+			player: 'red',
+			//initializing board state before componentDidMount
 			board: null,
 		}
 	}
 
-	componentDidMount() {
-		const newBoard = new Array(7).fill('0')
+	//mutating the column
+	changeColumn = (column) => {
+		console.log(`changing column ${column}`)	
 
+
+	}
+
+	//creating columns and defining x axis; defining board state
+	componentDidMount() {
+		let newBoard = [];
+		for(let x = 0; x < 7; x++) {
+			newBoard.push(<Column key={`column ${x}`} x={x} changeColumn={(column) => this.changeColumn(column)}/>)
+		}
+
+		this.setState({
+			board: newBoard,
+		})
 	}
 
 	render() {
 		return(
 			<div className="app">
-				<div>
-					<Board board={this.state.board}/>
+				<div className="board">
+					{this.state.board}
 				</div>
 			</div>
 		)

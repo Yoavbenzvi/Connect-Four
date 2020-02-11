@@ -1,13 +1,15 @@
 import React from 'react';
 import './Tile.css';
 
-const Tile = ({ x, y}) => {
+class Tile extends React.Component {
 
-	return(
-		<div className="circle">
-			<p> {x},{y} </p>
-		</div>
-	)
+	render() {
+		return(
+			<div className="tile">
+				<p> {this.props.x},{this.props.y} </p>
+			</div>
+		)
+	}
 }
 
 export default Tile;
