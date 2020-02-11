@@ -8,23 +8,20 @@ class App extends React.Component {
 
 		this.state = {
 			currentPlayer: 'red',
-			board: [
-				[], //0 c
-				[], //1 c
-				[], //2 c
-				[], //3 c
-				[], //4 c
-				[], //5 c
-				[] //6 c
-			]
+			board: null,
 		}
+	}
+
+	componentDidMount() {
+		const newBoard = new Array(7).fill('0')
+
 	}
 
 	render() {
 		return(
 			<div className="app">
-				<div className="bottom-part">
-					<Board />
+				<div>
+					<Board board={this.state.board}/>
 				</div>
 			</div>
 		)
