@@ -7,14 +7,22 @@ class App extends React.Component {
 		super()
 
 		this.state = {
+			currentPlayer: 'red',
+			board: [
+				[], //1 c
+				[], //2 c
+				[], //3 c
+				[], //4 c
+				[], //5 c
+				[], //6 c
+				[] //7 c
+			]
 		}
 	}
 
 	render() {
 		return(
 			<div className="app">
-				<div className="top-part">
-				</div>
 				<div className="bottom-part">
 					<Board />
 				</div>
