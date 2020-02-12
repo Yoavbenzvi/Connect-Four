@@ -1,0 +1,11 @@
+p {
+	margin: 0px 4px 4px 4px;
+}
+
+button {
+	margin-left: 8px;
+}
+
+.disp {
+	display: flex;
+}

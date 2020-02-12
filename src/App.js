@@ -56,9 +56,7 @@ class App extends React.Component {
 		return(
 			<div className="app">
 				<div className="display">
-					<Display
-						setPlayer={this.setPlayer} 
-					/>
+					{this.state.currentPlayer === null ? <Display setPlayer={this.setPlayer} /> : ""}
 				</div>
 				<div className="container">
 					<div className="board">

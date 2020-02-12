@@ -1,10 +1,11 @@
 import React from 'react';
+import './Display.css';
 
 class Display extends React.Component {
 	render() {
 		return(
-			<div>
-				<p>Choose First Player:</p>
+			<div className="disp">
+				<p>Choose first player:</p>
 				<button onClick={() => this.props.setPlayer('red')}>
 					Red
 				</button>
