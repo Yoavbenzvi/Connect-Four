@@ -2,8 +2,6 @@ import React from 'react';
 import './Column.css';
 import Tile from './Tile';
 
-//recieves the currentPlayer prop
-//get an x prop from parent on render
 class Column extends React.Component {
 	constructor() {
 		super()

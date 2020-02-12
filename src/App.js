@@ -15,11 +15,30 @@ class App extends React.Component {
 		this.state = {
 			currentPlayer: null,
 			board: null,
+			//change 1/2
+			columns: {
+				0: null,
+				1: null,
+				2: null,
+				3: null,
+				4: null,
+				5: null,
+			}
 		}
 	}
 
 	declareWinner = (winner) => {
 		window.alert(`winner is the ${winner} player!`)
+	}
+
+	//change 2/2
+	setColumn = (num, col) => {
+		let arr = [...this.state.columns.num]
+		this.setState({
+			columns: {
+				[num]: col
+			}
+		})
 	}
 
 	changePlayer = () => {
