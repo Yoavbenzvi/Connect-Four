@@ -20,7 +20,7 @@ class Column extends React.Component {
 
 		for(let i = 0; i < 6; i++) {
 			if(this.state.colors[i] === 'white') {
-				let newColors = this.state.colors;
+				let newColors = [...this.state.colors];
 				newColors[i] = this.props.currentPlayer;
 				this.setState({
 					colors: newColors
