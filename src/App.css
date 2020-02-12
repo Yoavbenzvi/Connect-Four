@@ -1,8 +1,16 @@
-.app {
+.container {
 	display: flex;
 	justify-content: center;
 	font-family: monospace;
 	font-size: 16px;
+}
+
+.display {
+	font-family: arial;
+	font-size: 1.5em;
+	display: flex;
+	justify-content: center;
+	margin: 24px;
 }
 
 .board {

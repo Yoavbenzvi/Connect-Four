@@ -1,5 +1,6 @@
 import React from 'react';
 import Column from './components/Column';
+import Display from './components/Display';
 import './App.css';
 
 // add alternating colors
@@ -12,7 +13,7 @@ class App extends React.Component {
 		super()
 
 		this.state = {
-			currentPlayer: 'red',
+			currentPlayer: null,
 			board: null,
 		}
 	}
@@ -25,6 +26,14 @@ class App extends React.Component {
             this.setState({
                 currentPlayer: 'red'
             })
+    }
+
+    setPlayer = (player) => {
+    	if(this.state.currentPlayer === null) {
+	    	this.setState({
+	    		currentPlayer: player
+	    	})
+	    }
     }
 
 	componentDidMount() {
@@ -46,8 +55,15 @@ class App extends React.Component {
 	render() {
 		return(
 			<div className="app">
-				<div className="board">
-					{this.state.board}
+				<div className="display">
+					<Display
+						setPlayer={this.setPlayer} 
+					/>
+				</div>
+				<div className="container">
+					<div className="board">
+						{this.state.board}
+					</div>
 				</div>
 			</div>
 		)
