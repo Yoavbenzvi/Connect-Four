@@ -18,6 +18,10 @@ class App extends React.Component {
 		}
 	}
 
+	declareWinner = (winner) => {
+		window.alert(`winner is the ${winner} player!`)
+	}
+
 	changePlayer = () => {
         this.state.currentPlayer === 'red' ?
             this.setState({
@@ -39,12 +43,14 @@ class App extends React.Component {
 	componentDidMount() {
 		let newBoard = [];
 		for(let x = 0; x < 7; x++) {
-			newBoard.push(<Column 
-				key={`column ${x}`} 
-				currentPlayer={() => this.state.currentPlayer} 
-				changePlayer={this.changePlayer}
-				x={x} 
-			/>)
+			newBoard.push(
+				<Column 
+					key={`column ${x}`} 
+					currentPlayer={() => this.state.currentPlayer} 
+					changePlayer={this.changePlayer}
+					declareWinner={this.declareWinner}
+					x={x} 
+				/>)
 		}
 
 		this.setState({

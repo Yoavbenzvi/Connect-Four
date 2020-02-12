@@ -13,20 +13,34 @@ class Column extends React.Component {
 		}
 	}
 
-	handleClick = () => {
-		console.log(`clicked on row ${this.props.x}`);
+	componentDidUpdate() {
+		this.checkWinnerVertical()
+	}
 
-		for(let i = 0; i < 6; i++) {
-			if(this.state.colors[i] === 'white') {
-				let newColors = [...this.state.colors];
-				newColors[i] = this.props.currentPlayer();
-				this.setState({
-					colors: newColors
-				})
-				break;
+	checkWinnerVertical = () => {
+		let arr = [...this.state.colors];
+		for(let i = 0; i < arr.length; i++) {
+			if(arr[i] !== 'white' && arr[i] === arr[i+1] && arr[i] === arr[i+2] && arr[i] === arr[i+3]) {
+				this.props.declareWinner(arr[i])
 			}
 		}
-		this.props.changePlayer();
+		console.log(arr)
+	}
+
+	handleClick = () => {
+		if(this.props.currentPlayer() !== null) {
+			for(let i = 0; i < 6; i++) {
+				if(this.state.colors[i] === 'white') {
+					let newColors = [...this.state.colors];
+					newColors[i] = this.props.currentPlayer();
+					this.setState({
+						colors: newColors
+					})
+					break;
+				}
+			}
+			this.props.changePlayer();
+		}
 	}
 
 	render() {
