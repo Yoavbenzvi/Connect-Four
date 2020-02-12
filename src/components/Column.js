@@ -13,25 +13,23 @@ class Column extends React.Component {
 		}
 	}
 
-
-	//calling a function to rerender the columns
 	handleClick = () => {
 		console.log(`clicked on row ${this.props.x}`);
 
 		for(let i = 0; i < 6; i++) {
 			if(this.state.colors[i] === 'white') {
 				let newColors = [...this.state.colors];
-				newColors[i] = this.props.currentPlayer;
+				newColors[i] = this.props.currentPlayer();
 				this.setState({
 					colors: newColors
 				})
 				break;
 			}
 		}
+		this.props.changePlayer();
 	}
 
 	render() {
-		//creating the column and defining y axis
 		let column = [];
 		for(let y = 5; y >= 0; y--) {
 			column.push(<Tile 

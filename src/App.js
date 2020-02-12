@@ -12,20 +12,27 @@ class App extends React.Component {
 		super()
 
 		this.state = {
-			//initializing first player
 			currentPlayer: 'red',
-			//initializing board state before componentDidMount
 			board: null,
 		}
 	}
 
-	//creating columns and defining x axis; defining board state
+	changePlayer = () => {
+        this.state.currentPlayer === 'red' ?
+            this.setState({
+                currentPlayer: 'yellow'
+            }) :
+            this.setState({
+                currentPlayer: 'red'
+            })
+    }
+
 	componentDidMount() {
 		let newBoard = [];
 		for(let x = 0; x < 7; x++) {
 			newBoard.push(<Column 
 				key={`column ${x}`} 
-				currentPlayer={this.state.currentPlayer} 
+				currentPlayer={() => this.state.currentPlayer} 
 				changePlayer={this.changePlayer}
 				x={x} 
 			/>)
