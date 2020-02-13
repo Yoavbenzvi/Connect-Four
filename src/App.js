@@ -36,10 +36,19 @@ class App extends React.Component {
 
 	//change 1/2
 	checkWinnerDiagonal = () => {
-		let arr = [...this.state.columns];
-		if(arr[3][0] !== 'white' && arr[3][0] === arr[4][1] &&arr[3][0] === arr[5][2] && arr[3][0] === arr[6][3]) {
-			console.log('works')
-		}
+		let arr = [...this.state.columns]
+		let test = [[3, 0], [2, 1]];
+		this.checkDiagonalRight(test, arr)
+	}
+
+	checkDiagonalRight = (test, arr) => {
+		test.forEach(item => {
+			for(x = 0; x < 4; x++) {
+				if (arr[item[0+x]][item[1+x]] === 'red') {
+					console.log('working')
+				}
+			}
+		})
 	}
 
 	checkWinnerHorizontal = () => {
