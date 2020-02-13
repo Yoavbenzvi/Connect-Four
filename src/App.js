@@ -34,19 +34,28 @@ class App extends React.Component {
 		})
 	}
 
-	//change 1/2
 	checkWinnerDiagonal = () => {
-		let arr = [...this.state.columns]
-		let test = [[3, 0], [2, 1]];
-		this.checkDiagonalRight(test, arr)
+		const toRight = [[3,0],[2,1],[3,1],[1,0],[2,1],[3,2],[0,0],[1,1],[2,2],[0,1],[1,2],[0,2],[1,3]];
+		this.checkDiagRight(toRight);
+		const toLeft = [[3,0],[4,0],[3,1],[5,0],[4,1],[3,2],[6,0],[5,1],[4,2],[6,1],[5,2],[6,2]];
+		this.checkDiagLeft(toLeft);
+
 	}
 
-	checkDiagonalRight = (test, arr) => {
-		test.forEach(item => {
-			for(x = 0; x < 4; x++) {
-				if (arr[item[0+x]][item[1+x]] === 'red') {
-					console.log('working')
-				}
+	checkDiagLeft = (sam) => {
+		let arr = [...this.state.columns];
+		sam.forEach(item => {
+			if(arr[item[0]][item[1]] !== "white" && arr[item[0]][item[1]] === arr[item[0]-1][item[1]+1] && arr[item[0]][item[1]] === arr[item[0]-2][item[1]+2] && arr[item[0]][item[1]] === arr[item[0]-3][item[1]+3] ) {
+				this.declareWinner(arr[item[0]][item[1]])
+			}
+		})
+	}
+
+	checkDiagRight = (sam) => {
+		let arr = [...this.state.columns];
+		sam.forEach(item => {
+			if(arr[item[0]][item[1]] !== "white" && arr[item[0]][item[1]] === arr[item[0]+1][item[1]+1] && arr[item[0]][item[1]] === arr[item[0]+2][item[1]+2] && arr[item[0]][item[1]] === arr[item[0]+3][item[1]+3] ) {
+				this.declareWinner(arr[item[0]][item[1]])
 			}
 		})
 	}
@@ -64,7 +73,6 @@ class App extends React.Component {
 
     componentDidUpdate() {
     	this.checkWinnerHorizontal();
-    	//change 2/2
     	this.checkWinnerDiagonal();
     }
 
