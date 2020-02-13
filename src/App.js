@@ -36,9 +36,13 @@ class App extends React.Component {
 
 	checkWinnerVertical = () => {
 		let arr = [...this.state.columns];
-		for(let c = 0; c < 7; c++) {
-
-		}
+		arr.forEach(arr => {
+			for(let i = 0; i < arr.length; i++) {
+				if(arr[i] !== 'white' && arr[i] === arr[i+1] && arr[i] === arr[i+2] && arr[i] === arr[i+3]) {
+					this.declareWinner(arr[i])
+				}
+			}		
+		})
 	}
 
 	checkWinnerDiagonal = () => {
