@@ -3,8 +3,6 @@ import Column from './components/Column';
 import Display from './components/Display';
 import './App.css';
 
-//make sure to stop switch if end of row
-
 class App extends React.Component {
 	constructor() {
 		super()
@@ -12,7 +10,6 @@ class App extends React.Component {
 		this.state = {
 			currentPlayer: null,
 			board: null,
-			//change 1/4
 			columns: [
 				['white', 'white', 'white', 'white', 'white', 'white'],
 				['white', 'white', 'white', 'white', 'white', 'white'],
@@ -29,7 +26,6 @@ class App extends React.Component {
 		window.alert(`winner is the ${winner} player!`)
 	}
 
-	//change 2/4 //setting the colum state
 	setColumn = (num, col) => {
 		let arr = [...this.state.columns];
 		arr[num] = col;
@@ -38,7 +34,14 @@ class App extends React.Component {
 		})
 	}
 
-	//change 4/4
+	//change 1/2
+	checkWinnerDiagonal = () => {
+		let arr = [...this.state.columns];
+		if(arr[3][0] !== 'white' && arr[3][0] === arr[4][1] &&arr[3][0] === arr[5][2] && arr[3][0] === arr[6][3]) {
+			console.log('works')
+		}
+	}
+
 	checkWinnerHorizontal = () => {
     	let arr = [...this.state.columns]
     	for(let x = 0; x < 4; x++) {
@@ -52,6 +55,8 @@ class App extends React.Component {
 
     componentDidUpdate() {
     	this.checkWinnerHorizontal();
+    	//change 2/2
+    	this.checkWinnerDiagonal();
     }
 
 	changePlayer = () => {
@@ -81,7 +86,6 @@ class App extends React.Component {
 					currentPlayer={() => this.state.currentPlayer} 
 					changePlayer={this.changePlayer}
 					declareWinner={this.declareWinner}
-					//change 3/4
 					setColumn={this.setColumn}
 					x={x} 
 				/>)
