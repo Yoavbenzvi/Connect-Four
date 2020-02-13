@@ -8,6 +8,7 @@ class App extends React.Component {
 		super()
 
 		this.state = {
+			winner: null,
 			currentPlayer: null,
 			board: null,
 			columns: [
@@ -23,7 +24,14 @@ class App extends React.Component {
 	}
 
 	declareWinner = (winner) => {
-		window.alert(`winner is the ${winner} player!`)
+		console.log(`winner is the ${winner} player!`)
+		this.setState({
+			winner: winner
+		})
+	}
+
+	reset = () => {
+		console.log('reset to be added')
 	}
 
 	setColumn = (num, col) => {
@@ -46,7 +54,7 @@ class App extends React.Component {
 	}
 
 	checkWinnerDiagonal = () => {
-		const toRight = [[3,0],[2,1],[3,1],[1,0],[2,1],[3,2],[0,0],[1,1],[2,2],[0,1],[1,2],[0,2],[1,3]];
+		const toRight = [[3,0],[2,1],[3,1],[1,0],[2,1],[3,2],[0,0],[1,1],[2,2],[0,1],[1,2],[0,2],[1,3],[2,0]];
 		this.checkDiagRight(toRight);
 		const toLeft = [[3,0],[4,0],[3,1],[5,0],[4,1],[3,2],[6,0],[5,1],[4,2],[6,1],[5,2],[6,2]];
 		this.checkDiagLeft(toLeft);
@@ -83,9 +91,11 @@ class App extends React.Component {
     }
 
     componentDidUpdate() {
-    	this.checkWinnerHorizontal();
-    	this.checkWinnerDiagonal();
-    	this.checkWinnerVertical();
+    	if(!this.state.winner) {
+	    	this.checkWinnerHorizontal();
+	    	this.checkWinnerDiagonal();
+	    	this.checkWinnerVertical();
+    	}
     }
 
 	changePlayer = () => {
@@ -99,7 +109,7 @@ class App extends React.Component {
     }
 
     setPlayer = (player) => {
-    	if(this.state.currentPlayer === null) {
+    	if(!this.state.currentPlayer) {
 	    	this.setState({
 	    		currentPlayer: player
 	    	})
@@ -114,12 +124,11 @@ class App extends React.Component {
 					key={`column ${x}`} 
 					currentPlayer={() => this.state.currentPlayer} 
 					changePlayer={this.changePlayer}
-					declareWinner={this.declareWinner}
 					setColumn={this.setColumn}
 					x={x} 
+					winner={() => this.state.winner}
 				/>)
 		}
-
 		this.setState({
 			board: newBoard,
 		})
@@ -129,7 +138,7 @@ class App extends React.Component {
 		return(
 			<div className="app">
 				<div className="display">
-					{this.state.currentPlayer === null ? <Display setPlayer={this.setPlayer} /> : ""}
+					<Display currentPlayer={this.state.currentPlayer} winner={this.state.winner} setPlayer={this.setPlayer} reset={this.reset}/>
 				</div>
 				<div className="container">
 					<div className="board">

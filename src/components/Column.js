@@ -1,5 +1,4 @@
 import React from 'react';
-import './Column.css';
 import Tile from './Tile';
 
 class Column extends React.Component {
@@ -16,7 +15,7 @@ class Column extends React.Component {
 	}
 
 	handleClick = () => {
-		if(this.props.currentPlayer() !== null && this.state.colors[5] === 'white') {
+		if(this.props.currentPlayer() !== null && this.state.colors[5] === 'white' && !this.props.winner()) {
 			for(let i = 0; i < 6; i++) {
 				if(this.state.colors[i] === 'white') {
 					let newColors = [...this.state.colors];
