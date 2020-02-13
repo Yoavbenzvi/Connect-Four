@@ -2,8 +2,6 @@ import React from 'react';
 import './Column.css';
 import Tile from './Tile';
 
-//recieves the currentPlayer prop
-//get an x prop from parent on render
 class Column extends React.Component {
 	constructor() {
 		super()
@@ -14,21 +12,11 @@ class Column extends React.Component {
 	}
 
 	componentDidUpdate() {
-		this.checkWinnerVertical()
-	}
-
-	checkWinnerVertical = () => {
-		let arr = [...this.state.colors];
-		for(let i = 0; i < arr.length; i++) {
-			if(arr[i] !== 'white' && arr[i] === arr[i+1] && arr[i] === arr[i+2] && arr[i] === arr[i+3]) {
-				this.props.declareWinner(arr[i])
-			}
-		}
-		console.log(arr)
+		this.props.setColumn(this.props.x ,this.state.colors)
 	}
 
 	handleClick = () => {
-		if(this.props.currentPlayer() !== null) {
+		if(this.props.currentPlayer() !== null && this.state.colors[5] === 'white') {
 			for(let i = 0; i < 6; i++) {
 				if(this.state.colors[i] === 'white') {
 					let newColors = [...this.state.colors];
