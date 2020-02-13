@@ -12,17 +12,7 @@ class Column extends React.Component {
 	}
 
 	componentDidUpdate() {
-		this.checkWinnerVertical()
 		this.props.setColumn(this.props.x ,this.state.colors)
-	}
-
-	checkWinnerVertical = () => {
-		let arr = [...this.state.colors];
-		for(let i = 0; i < arr.length; i++) {
-			if(arr[i] !== 'white' && arr[i] === arr[i+1] && arr[i] === arr[i+2] && arr[i] === arr[i+3]) {
-				this.props.declareWinner(arr[i])
-			}
-		}
 	}
 
 	handleClick = () => {

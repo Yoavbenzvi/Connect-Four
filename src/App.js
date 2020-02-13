@@ -34,6 +34,13 @@ class App extends React.Component {
 		})
 	}
 
+	checkWinnerVertical = () => {
+		let arr = [...this.state.columns];
+		for(let c = 0; c < 7; c++) {
+
+		}
+	}
+
 	checkWinnerDiagonal = () => {
 		const toRight = [[3,0],[2,1],[3,1],[1,0],[2,1],[3,2],[0,0],[1,1],[2,2],[0,1],[1,2],[0,2],[1,3]];
 		this.checkDiagRight(toRight);
@@ -74,6 +81,7 @@ class App extends React.Component {
     componentDidUpdate() {
     	this.checkWinnerHorizontal();
     	this.checkWinnerDiagonal();
+    	this.checkWinnerVertical();
     }
 
 	changePlayer = () => {
