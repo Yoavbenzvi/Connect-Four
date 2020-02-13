@@ -4,8 +4,9 @@ p {
 
 button {
 	margin-left: 8px;
+	font-weight: bold;
 }
 
-.disp {
+.pick {
 	display: flex;
 }

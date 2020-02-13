@@ -18,3 +18,17 @@
 	display: grid;
 	grid-template-columns: repeat(7, 1fr);
 }
+
+.column {
+	border: 1px solid black;
+}
+
+.tile {
+	text-align: center;
+	border-radius: 50%;
+	height: 64px;
+	width: 64px;
+	padding: 1.5em;
+	margin: 1.5em;
+	border: 2px solid black;
+}

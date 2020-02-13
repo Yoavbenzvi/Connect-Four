@@ -30,6 +30,10 @@ class App extends React.Component {
 		})
 	}
 
+	reset = () => {
+		console.log('reset to be added')
+	}
+
 	setColumn = (num, col) => {
 		let arr = [...this.state.columns];
 		arr[num] = col;
@@ -105,7 +109,7 @@ class App extends React.Component {
     }
 
     setPlayer = (player) => {
-    	if(this.state.currentPlayer === null) {
+    	if(!this.state.currentPlayer) {
 	    	this.setState({
 	    		currentPlayer: player
 	    	})
@@ -125,7 +129,6 @@ class App extends React.Component {
 					winner={() => this.state.winner}
 				/>)
 		}
-
 		this.setState({
 			board: newBoard,
 		})
@@ -135,7 +138,7 @@ class App extends React.Component {
 		return(
 			<div className="app">
 				<div className="display">
-					<Display setPlayer={this.setPlayer} />
+					<Display currentPlayer={this.state.currentPlayer} winner={this.state.winner} setPlayer={this.setPlayer} reset={this.reset}/>
 				</div>
 				<div className="container">
 					<div className="board">

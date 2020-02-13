@@ -1,5 +1,4 @@
 import React from 'react';
-import './Column.css';
 import Tile from './Tile';
 
 class Column extends React.Component {
