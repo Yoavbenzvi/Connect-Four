@@ -3,10 +3,7 @@ import Column from './components/Column';
 import Display from './components/Display';
 import './App.css';
 
-// add alternating colors
 //make sure to stop switch if end of row
-//add checkwinner function
-//add display
 
 class App extends React.Component {
 	constructor() {
@@ -15,15 +12,16 @@ class App extends React.Component {
 		this.state = {
 			currentPlayer: null,
 			board: null,
-			//change 1/2
-			columns: {
-				0: null,
-				1: null,
-				2: null,
-				3: null,
-				4: null,
-				5: null,
-			}
+			//change 1/4
+			columns: [
+				['white', 'white', 'white', 'white', 'white', 'white'],
+				['white', 'white', 'white', 'white', 'white', 'white'],
+				['white', 'white', 'white', 'white', 'white', 'white'],
+				['white', 'white', 'white', 'white', 'white', 'white'],
+				['white', 'white', 'white', 'white', 'white', 'white'],
+				['white', 'white', 'white', 'white', 'white', 'white'],
+				['white', 'white', 'white', 'white', 'white', 'white'],
+			]
 		}
 	}
 
@@ -31,15 +29,30 @@ class App extends React.Component {
 		window.alert(`winner is the ${winner} player!`)
 	}
 
-	//change 2/2
+	//change 2/4 //setting the colum state
 	setColumn = (num, col) => {
-		let arr = [...this.state.columns.num]
+		let arr = [...this.state.columns];
+		arr[num] = col;
 		this.setState({
-			columns: {
-				[num]: col
-			}
+			columns: arr
 		})
 	}
+
+	//change 4/4
+	checkWinnerHorizontal = () => {
+    	let arr = [...this.state.columns]
+    	for(let x = 0; x < 4; x++) {
+    		for(let y = 0; y < 6; y++) {
+	    		if(arr[x][y] !== 'white' && arr[x][y] === arr[x+1][y] && arr[x][y] === arr[x+2][y] && arr[x][y] === arr[x+3][y]) {
+	    			this.declareWinner(arr[x][y])
+	    		}
+    		}
+    	}
+    }
+
+    componentDidUpdate() {
+    	this.checkWinnerHorizontal();
+    }
 
 	changePlayer = () => {
         this.state.currentPlayer === 'red' ?
@@ -68,6 +81,8 @@ class App extends React.Component {
 					currentPlayer={() => this.state.currentPlayer} 
 					changePlayer={this.changePlayer}
 					declareWinner={this.declareWinner}
+					//change 3/4
+					setColumn={this.setColumn}
 					x={x} 
 				/>)
 		}
